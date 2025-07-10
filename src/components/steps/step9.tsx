@@ -17,8 +17,8 @@ import {
 } from "../ui/popover";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
+import FormError from "../FormError";
 
-// --- Mock Data ---
 const mockSchools = [
   { value: "claremont mckenna college", label: "Claremont McKenna College" },
   { value: "stanford university", label: "Stanford University" },
@@ -28,10 +28,8 @@ const mockSchools = [
 const areaOfStudyOptions = [
   "Accounting", "Aerospace Engineering", "Agriculture", "Anthropology", "Architecture", "Art History", "Biology", "Business Management", "Chemical Engineering", "Chemistry", "Civil Engineering", "Communications", "Computer Engineering", "Computer Science", "Construction", "Criminal Justice", "Drama", "Economics", "Education", "Electrical Engineering", "English", "Film", "Finance", "Forestry", "Geography", "Geology", "Graphic Design", "Health Care Administration", "History", "Hospitality & Tourism", "Industrial Engineering", "Information Technology (IT)", "Interior Design", "International Relations", "Journalism", "Management Information Systems (MIS)", "Marketing", "Math", "Mechanical Engineering", "Music", "Nursing", "Nutrition", "Other", "Philosophy", "Physician Assistant", "Physics", "Political Science", "Psychology", "Religion", "Sociology", "Spanish"
 ];
-// ---
 
-const professionalDegrees = ["PharmD", "MBA", "JD", "DDS", "MD"];
-
+// The interface now accepts the professionalDegrees prop
 interface Step9Props {
   data: {
     educationLevel: string;
@@ -39,15 +37,22 @@ interface Step9Props {
     areaOfStudy: string;
     graduationYear: string;
   };
+  errors: {
+    school?: string;
+    areaOfStudy?: string;
+    graduationYear?: string;
+  };
+  professionalDegrees: string[]; // <-- ADD THIS
   updateFormData: (data: Partial<Step9Props['data']>) => void;
   onNext: () => void;
   onBack: () => void;
 }
 
-export default function Step9({ data, updateFormData, onNext, onBack }: Step9Props) {
+export default function Step9({ data, errors, professionalDegrees, updateFormData, onNext, onBack }: Step9Props) {
   const [schoolPopoverOpen, setSchoolPopoverOpen] = useState(false);
   const [studyPopoverOpen, setStudyPopoverOpen] = useState(false);
-
+  
+  // The local constant is removed, and we use the prop instead
   const showAreaOfStudy = !professionalDegrees.includes(data.educationLevel);
 
   return (
@@ -57,12 +62,11 @@ export default function Step9({ data, updateFormData, onNext, onBack }: Step9Pro
       </div>
 
       <div className="flex flex-col gap-4">
-        {/* School Combobox */}
         <div>
           <Label>School</Label>
           <Popover open={schoolPopoverOpen} onOpenChange={setSchoolPopoverOpen}>
             <PopoverTrigger asChild>
-              <Button variant="outline" role="combobox" className="w-full justify-between font-normal">
+              <Button variant="outline" role="combobox" className={cn("w-full justify-between font-normal", errors.school && "border-red-600")}>
                 {data.school ? mockSchools.find(s => s.value === data.school)?.label : "Select school..."}
                 <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
               </Button>
@@ -82,15 +86,15 @@ export default function Step9({ data, updateFormData, onNext, onBack }: Step9Pro
               </Command>
             </PopoverContent>
           </Popover>
+          <FormError message={errors.school} />
         </div>
         
-        {/* --- Conditionally render Area of Study --- */}
         {showAreaOfStudy && (
           <div>
             <Label>Area of Study</Label>
              <Popover open={studyPopoverOpen} onOpenChange={setStudyPopoverOpen}>
               <PopoverTrigger asChild>
-                <Button variant="outline" role="combobox" className="w-full justify-between font-normal">
+                <Button variant="outline" role="combobox" className={cn("w-full justify-between font-normal", errors.areaOfStudy && "border-red-600")}>
                   {data.areaOfStudy || "Select area of study..."}
                   <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
@@ -112,14 +116,15 @@ export default function Step9({ data, updateFormData, onNext, onBack }: Step9Pro
                 </Command>
               </PopoverContent>
             </Popover>
+            <FormError message={errors.areaOfStudy} />
             <p className="text-xs text-gray-500 mt-1">Select the closest applicable option.</p>
           </div>
         )}
         
         <div>
           <Label htmlFor="gradYear">Graduation or expected graduation year</Label>
-          {/* This is the corrected line */}
-          <Input id="gradYear" value={data.graduationYear} onChange={(e) => updateFormData({ graduationYear: e.target.value })} />
+          <Input id="gradYear" value={data.graduationYear} onChange={(e) => updateFormData({ graduationYear: e.target.value })} className={cn(errors.graduationYear && "border-red-600")} />
+          <FormError message={errors.graduationYear} />
         </div>
       </div>
 

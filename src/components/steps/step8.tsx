@@ -7,32 +7,26 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import FormError from "../FormError";
+import { cn } from "../../lib/utils";
 
 interface Step8Props {
   data: {
     educationLevel: string;
   };
+  errors: { educationLevel?: string };
   updateFormData: (data: Partial<Step8Props['data']>) => void;
   onNext: () => void;
   onBack: () => void;
 }
 
 const educationLevels = [
-  "Less than high school",
-  "High School diploma",
-  "Associate",
-  "Certificate Program",
-  "Bachelor's",
-  "PharmD",
-  "Masters",
-  "MBA",
-  "PhD",
-  "JD",
-  "DDS",
-  "MD",
+  "Less than high school", "High School diploma", "Associate",
+  "Certificate Program", "Bachelor's", "PharmD", "Masters", "MBA",
+  "PhD", "JD", "DDS", "MD",
 ];
 
-export default function Step8({ data, updateFormData, onNext, onBack }: Step8Props) {
+export default function Step8({ data, errors, updateFormData, onNext, onBack }: Step8Props) {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">
@@ -43,7 +37,7 @@ export default function Step8({ data, updateFormData, onNext, onBack }: Step8Pro
             value={data.educationLevel}
             onValueChange={(value) => updateFormData({ educationLevel: value })}
           >
-            <SelectTrigger>
+            <SelectTrigger className={cn(errors.educationLevel && "border-red-600")}>
               <SelectValue placeholder="Select..." />
             </SelectTrigger>
             <SelectContent>
@@ -54,6 +48,7 @@ export default function Step8({ data, updateFormData, onNext, onBack }: Step8Pro
               ))}
             </SelectContent>
           </Select>
+          <FormError message={errors.educationLevel} />
           <p className="text-sm text-gray-500 mt-1">
             Include degrees in which you are currently enrolled.
           </p>
