@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Header from './Header';
 import Step1 from './steps/step1';
 import Step2 from './steps/step2';
 import Step3 from './steps/step3';
@@ -239,8 +240,11 @@ const validateStep = (step: number) => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-8">
-      {renderCurrentStep()}
+    <div>
+      <Header currentStep={currentStep} totalSteps={15} />
+      <main className="max-w-2xl mx-auto p-8 pt-28">
+        {renderCurrentStep()}
+      </main>
     </div>
   );
 }
