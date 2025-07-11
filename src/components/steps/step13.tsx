@@ -41,15 +41,19 @@ export default function Step13({ data, errors, updateFormData, onNext, onBack }:
       <FormError message={errors.vehicleOwnership} />
 
       {data.vehicleOwnership === 'paid-off' && (
-        <div className="w-full max-w-sm">
-          <Label htmlFor="mileage">How many miles does it have?</Label>
+        <div className="w-full">
+          <Label htmlFor="mileage" className="block mb-1.5">How many miles does it have?</Label>
           <Input id="mileage" value={data.vehicleMileage} onChange={(e) => updateFormData({ vehicleMileage: e.target.value })} placeholder="e.g., 75000" />
         </div>
       )}
 
-      <div className="flex justify-between">
-        <Button variant="outline" onClick={onBack}>Back</Button>
-        <Button onClick={onNext}>Next</Button>
+      <div className="flex w-full items-center gap-4 mt-8">
+        <Button variant="outline" onClick={onBack} size="lg">
+          Back
+        </Button>
+        <Button onClick={onNext} size="lg" className="flex-grow">
+          Next
+        </Button>
       </div>
     </div>
   );

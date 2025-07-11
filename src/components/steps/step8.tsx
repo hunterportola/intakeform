@@ -31,13 +31,13 @@ export default function Step8({ data, errors, updateFormData, onNext, onBack }: 
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">
         <h1 className="text-3xl font-bold">What's your highest level of education?</h1>
-        <div className="w-full max-w-sm">
-          <Label>Highest level of education</Label>
+        <div className="w-full">
+          <Label className="block mb-1.5">Highest level of education</Label>
           <Select
             value={data.educationLevel}
             onValueChange={(value) => updateFormData({ educationLevel: value })}
           >
-            <SelectTrigger className={cn(errors.educationLevel && "border-red-600")}>
+            <SelectTrigger className={cn("w-full", errors.educationLevel && "border-red-600")}>
               <SelectValue placeholder="Select..." />
             </SelectTrigger>
             <SelectContent>
@@ -55,11 +55,11 @@ export default function Step8({ data, errors, updateFormData, onNext, onBack }: 
         </div>
       </div>
       
-      <div className="flex justify-between">
-        <Button variant="outline" onClick={onBack}>
+      <div className="flex w-full items-center gap-4 mt-8">
+        <Button variant="outline" onClick={onBack} size="lg">
           Back
         </Button>
-        <Button onClick={onNext}>
+        <Button onClick={onNext} size="lg" className="flex-grow">
           Next
         </Button>
       </div>

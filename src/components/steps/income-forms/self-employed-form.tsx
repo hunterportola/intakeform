@@ -29,12 +29,12 @@ export default function SelfEmployedForm({ data, errors, updateFormData }: SelfE
   return (
     <div className="flex flex-col gap-4 p-4 border rounded-md bg-gray-50/50">
       <div>
-        <Label htmlFor="description">Description</Label>
+        <Label htmlFor="description" className="block mb-1.5">Description</Label>
         <Input id="description" value={data.selfEmployedDescription} onChange={(e) => updateFormData({ selfEmployedDescription: e.target.value })} className={cn(errors.selfEmployedDescription && "border-red-600")} />
         <FormError message={errors.selfEmployedDescription} />
       </div>
       <div>
-        <Label htmlFor="annualIncome">Annual income</Label>
+        <Label htmlFor="annualIncome" className="block mb-1.5">Annual income</Label>
         <NumericFormat
           id="annualIncome"
           value={data.annualIncome}
@@ -50,17 +50,17 @@ export default function SelfEmployedForm({ data, errors, updateFormData }: SelfE
       </div>
       <div className="flex gap-4">
         <div className="w-1/2">
-          <Label>Start month</Label>
+          <Label className="block mb-1.5">Start month</Label>
           <Select value={data.startMonth} onValueChange={(value) => updateFormData({ startMonth: value })}>
-            <SelectTrigger className={cn(errors.startMonth && "border-red-600")}><SelectValue placeholder="Month" /></SelectTrigger>
+            <SelectTrigger className={cn("w-full", errors.startMonth && "border-red-600")}><SelectValue placeholder="Month" /></SelectTrigger>
             <SelectContent>{monthOptions.map(m => <SelectItem key={m} value={m}>{m}</SelectItem>)}</SelectContent>
           </Select>
           <FormError message={errors.startMonth} />
         </div>
         <div className="w-1/2">
-          <Label>Year</Label>
+          <Label className="block mb-1.5">Year</Label>
           <Select value={data.startYear} onValueChange={(value) => updateFormData({ startYear: value })}>
-            <SelectTrigger className={cn(errors.startYear && "border-red-600")}><SelectValue placeholder="Year" /></SelectTrigger>
+            <SelectTrigger className={cn("w-full", errors.startYear && "border-red-600")}><SelectValue placeholder="Year" /></SelectTrigger>
             <SelectContent>{yearOptions.map(y => <SelectItem key={y} value={y}>{y}</SelectItem>)}</SelectContent>
           </Select>
           <FormError message={errors.startYear} />

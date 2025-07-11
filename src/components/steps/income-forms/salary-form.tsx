@@ -32,35 +32,35 @@ export default function SalaryForm({ data, errors, updateFormData }: SalaryFormP
   return (
     <div className="flex flex-col gap-4 p-4 border rounded-md bg-gray-50/50">
       <div>
-        <Label htmlFor="jobTitle">Job title</Label>
+        <Label htmlFor="jobTitle" className="block mb-1.5">Job title</Label>
         <Input id="jobTitle" value={data.jobTitle} onChange={(e) => updateFormData({ jobTitle: e.target.value })} className={cn(errors.jobTitle && "border-red-600")} />
         <FormError message={errors.jobTitle} />
       </div>
       <div>
-        <Label htmlFor="company">Company</Label>
+        <Label htmlFor="company" className="block mb-1.5">Company</Label>
         <Input id="company" value={data.company} onChange={(e) => updateFormData({ company: e.target.value })} className={cn(errors.company && "border-red-600")} />
         <FormError message={errors.company} />
       </div>
        <div className="flex gap-4">
         <div className="w-1/2">
-          <Label>Start month</Label>
+          <Label className="block mb-1.5">Start month</Label>
           <Select value={data.startMonth} onValueChange={(value) => updateFormData({ startMonth: value })}>
-            <SelectTrigger className={cn(errors.startMonth && "border-red-600")}><SelectValue placeholder="Month" /></SelectTrigger>
+            <SelectTrigger className={cn("w-full", errors.startMonth && "border-red-600")}><SelectValue placeholder="Month" /></SelectTrigger>
             <SelectContent>{monthOptions.map(m => <SelectItem key={m} value={m}>{m}</SelectItem>)}</SelectContent>
           </Select>
           <FormError message={errors.startMonth} />
         </div>
         <div className="w-1/2">
-          <Label>Year</Label>
+          <Label className="block mb-1.5">Year</Label>
           <Select value={data.startYear} onValueChange={(value) => updateFormData({ startYear: value })}>
-            <SelectTrigger className={cn(errors.startYear && "border-red-600")}><SelectValue placeholder="Year" /></SelectTrigger>
+            <SelectTrigger className={cn("w-full", errors.startYear && "border-red-600")}><SelectValue placeholder="Year" /></SelectTrigger>
             <SelectContent>{yearOptions.map(y => <SelectItem key={y} value={y}>{y}</SelectItem>)}</SelectContent>
           </Select>
           <FormError message={errors.startYear} />
         </div>
       </div>
       <div>
-        <Label htmlFor="annualIncome">Annual income</Label>
+        <Label htmlFor="annualIncome" className="block mb-1.5">Annual income</Label>
         <NumericFormat
           id="annualIncome"
           value={data.annualIncome}
@@ -75,7 +75,7 @@ export default function SalaryForm({ data, errors, updateFormData }: SalaryFormP
         <FormError message={errors.annualIncome} />
       </div>
       <div>
-        <Label htmlFor="additionalCompensation">Additional compensation</Label>
+        <Label htmlFor="additionalCompensation" className="block mb-1.5">Additional compensation</Label>
         <NumericFormat
           id="additionalCompensation"
           value={data.additionalCompensation}

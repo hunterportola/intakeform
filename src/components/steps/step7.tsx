@@ -37,11 +37,11 @@ export default function Step7({ data, errors, updateFormData, onNext, onBack }: 
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">
         <h1 className="text-3xl font-bold">What's your phone number?</h1>
-        <div className="w-full max-w-sm">
-          <Label htmlFor="phone">Phone number</Label>
-          <Input id="phone" type="tel" placeholder="(555) 555-5555" value={data.phoneNumber} onChange={handlePhoneChange} className={cn(errors.phoneNumber && "border-red-600")} />
-          <FormError message={errors.phoneNumber} />
-        </div>
+        <div className="w-full">
+  <Label htmlFor="phone" className="block mb-1.5">Phone number</Label>
+  <Input id="phone" type="tel" placeholder="(555) 555-5555" value={data.phoneNumber} onChange={handlePhoneChange} className={cn(errors.phoneNumber && "border-red-600")} />
+  <FormError message={errors.phoneNumber} />
+</div>
       </div>
       
       <div className="flex items-center space-x-2">
@@ -51,9 +51,13 @@ export default function Step7({ data, errors, updateFormData, onNext, onBack }: 
         </Label>
       </div>
 
-      <div className="flex justify-between">
-        <Button variant="outline" onClick={onBack}>Back</Button>
-        <Button onClick={onNext}>Next</Button>
+      <div className="flex w-full items-center gap-4 mt-8">
+        <Button variant="outline" onClick={onBack} size="lg">
+          Back
+        </Button>
+        <Button onClick={onNext} size="lg" className="flex-grow">
+          Next
+        </Button>
       </div>
     </div>
   );

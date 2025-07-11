@@ -47,11 +47,11 @@ export default function Step14({ data, goToStep, onNext, onBack }: Step14Props) 
         {/* Add more review items as needed */}
       </div>
 
-      <div className="flex justify-between">
-        <Button variant="outline" onClick={onBack}>
+      <div className="flex w-full items-center gap-4 mt-8">
+        <Button variant="outline" onClick={onBack} size="lg">
           Back
         </Button>
-        <Button onClick={onNext}>
+        <Button onClick={onNext} size="lg" className="flex-grow">
           Next
         </Button>
       </div>

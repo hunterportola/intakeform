@@ -33,18 +33,22 @@ export default function Step6({ data, errors, updateFormData, onNext, onBack }: 
       </div>
 
       <RadioGroup value={data.homeOwnership} onValueChange={(value) => updateFormData({ homeOwnership: value })} className="flex flex-col gap-4">
-        {ownershipOptions.map((option) => (
-          <div key={option.id} className="flex items-center space-x-2">
-            <RadioGroupItem value={option.id} id={option.id} />
-            <Label htmlFor={option.id} className="font-normal">{option.label}</Label>
-          </div>
-        ))}
-      </RadioGroup>
+  {ownershipOptions.map((option) => (
+    <div key={option.id} className="flex items-center space-x-2">
+      <RadioGroupItem value={option.id} id={option.id} />
+      <Label htmlFor={option.id} className="font-normal">{option.label}</Label>
+    </div>
+  ))}
+</RadioGroup>
       <FormError message={errors.homeOwnership} />
       
-      <div className="flex justify-between">
-        <Button variant="outline" onClick={onBack}>Back</Button>
-        <Button onClick={onNext}>Next</Button>
+      <div className="flex w-full items-center gap-4 mt-8">
+        <Button variant="outline" onClick={onBack} size="lg">
+          Back
+        </Button>
+        <Button onClick={onNext} size="lg" className="flex-grow">
+          Next
+        </Button>
       </div>
     </div>
   );

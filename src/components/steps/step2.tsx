@@ -41,28 +41,32 @@ export default function Step2({ data, errors, updateFormData, onNext, onBack }: 
       <div className="flex flex-col gap-4">
         <h1 className="text-3xl font-bold">What's this loan for?</h1>
         <p className="text-gray-600">Choose what best matches your primary need.</p>
-        <div className="w-full max-w-sm">
-          <Label>Loan purpose</Label>
+        <div className="w-full">
+          <Label className="block mb-1.5">Loan purpose</Label>
           <Select 
-            value={data.loanPurpose} 
-            onValueChange={(value) => updateFormData({ loanPurpose: value })}
-          >
-            <SelectTrigger className={cn(errors.loanPurpose && "border-red-600")}>
-              <SelectValue placeholder="Select a reason..." />
-            </SelectTrigger>
-            <SelectContent>
-              {loanPurposes.map((purpose) => (
-                <SelectItem key={purpose} value={purpose}>{purpose}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <FormError message={errors.loanPurpose} />
-        </div>
+    value={data.loanPurpose} 
+    onValueChange={(value) => updateFormData({ loanPurpose: value })}
+  >
+    <SelectTrigger className={cn("w-full", errors.loanPurpose && "border-red-600")}>
+      <SelectValue placeholder="Select a reason..." />
+    </SelectTrigger>
+    <SelectContent>
+      {loanPurposes.map((purpose) => (
+        <SelectItem key={purpose} value={purpose}>{purpose}</SelectItem>
+      ))}
+    </SelectContent>
+  </Select>
+  <FormError message={errors.loanPurpose} />
+</div>
       </div>
       
-      <div className="flex justify-between">
-        <Button variant="outline" onClick={onBack}>Back</Button>
-        <Button onClick={onNext}>Next</Button>
+      <div className="flex w-full items-center gap-4 mt-8">
+        <Button variant="outline" onClick={onBack} size="lg">
+          Back
+        </Button>
+        <Button onClick={onNext} size="lg" className="flex-grow">
+          Next
+        </Button>
       </div>
     </div>
   );

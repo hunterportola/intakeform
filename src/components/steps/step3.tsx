@@ -48,43 +48,47 @@ export default function Step3({ data, errors, updateFormData, onNext, onBack }: 
       <div className="flex flex-col gap-4">
         {/* First Name with Error Handling */}
         <div>
-          <Label htmlFor="firstName">Legal first name</Label>
-          <Input 
-            id="firstName" 
-            value={data.firstName} 
-            onChange={(e) => updateFormData({ firstName: e.target.value })} 
-            className={cn(errors.firstName && "border-red-600 focus-visible:ring-red-600")}
-          />
-          <FormError message={errors.firstName} />
-        </div>
+    <Label htmlFor="firstName" className="block mb-1.5">Legal first name</Label>
+    <Input 
+      id="firstName" 
+      value={data.firstName} 
+      onChange={(e) => updateFormData({ firstName: e.target.value })} 
+      className={cn("w-full", errors.firstName && "border-red-600 focus-visible:ring-red-600")}
+    />
+    <FormError message={errors.firstName} />
+  </div>
         
         <div className="flex gap-4">
-          {/* Last Name with Error Handling */}
-          <div className="flex-grow">
-            <Label htmlFor="lastName">Legal last name</Label>
-            <Input 
-              id="lastName" 
-              value={data.lastName} 
-              onChange={(e) => updateFormData({ lastName: e.target.value })} 
-              className={cn(errors.lastName && "border-red-600 focus-visible:ring-red-600")}
-            />
-            <FormError message={errors.lastName} />
-          </div>
-          
-          {/* Suffix */}
-          <div className="w-1/3">
-            <Label htmlFor="suffix">Suffix</Label>
-            <Select value={data.suffix} onValueChange={(value) => updateFormData({ suffix: value })}>
-              <SelectTrigger id="suffix"><SelectValue placeholder="Suffix" /></SelectTrigger>
-              <SelectContent>{suffixOptions.filter(s => s).map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent>
-            </Select>
-          </div>
-        </div>
+    {/* Last Name with Error Handling */}
+    <div className="flex-grow">
+      <Label htmlFor="lastName" className="block mb-1.5">Legal last name</Label>
+      <Input 
+        id="lastName" 
+        value={data.lastName} 
+        onChange={(e) => updateFormData({ lastName: e.target.value })} 
+        className={cn("w-full", errors.lastName && "border-red-600 focus-visible:ring-red-600")}
+      />
+      <FormError message={errors.lastName} />
+    </div>
+    
+    {/* Suffix */}
+    <div className="w-1/3">
+      <Label htmlFor="suffix" className="block mb-1.5">Suffix</Label>
+      <Select value={data.suffix} onValueChange={(value) => updateFormData({ suffix: value })}>
+        <SelectTrigger id="suffix" className="w-full"><SelectValue placeholder="Suffix" /></SelectTrigger>
+        <SelectContent>{suffixOptions.filter(s => s).map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent>
+      </Select>
+    </div>
+  </div>
       </div>
 
-      <div className="flex justify-between">
-        <Button variant="outline" onClick={onBack}>Back</Button>
-        <Button onClick={onNext}>Next</Button>
+      <div className="flex w-full items-center gap-4 mt-8">
+        <Button variant="outline" onClick={onBack} size="lg">
+          Back
+        </Button>
+        <Button onClick={onNext} size="lg" className="flex-grow">
+          Next
+        </Button>
       </div>
     </div>
   );

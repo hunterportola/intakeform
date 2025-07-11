@@ -23,15 +23,15 @@ export default function Step11({ data, errors, updateFormData, onNext, onBack }:
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">
         <h1 className="text-3xl font-bold">How much do you have in savings?</h1>
-        <div className="w-full max-w-sm flex flex-col gap-4">
+        <div className="w-full flex flex-col gap-4">
           <div>
-            <Label htmlFor="checkingSavings">Checking & Savings accounts</Label>
-            <Input id="checkingSavings" placeholder="$5,000" value={data.checkingSavings} onChange={(e) => updateFormData({ checkingSavings: e.target.value })} className={cn(errors.checkingSavings && "border-red-600")} />
+            <Label htmlFor="checkingSavings" className="block mb-1.5">Checking & Savings accounts</Label>
+            <Input id="checkingSavings" value={data.checkingSavings} onChange={(e) => updateFormData({ checkingSavings: e.target.value })} className={cn(errors.checkingSavings && "border-red-600")} />
             <FormError message={errors.checkingSavings} />
           </div>
           <div>
-            <Label htmlFor="investments">Investment accounts</Label>
-            <Input id="investments" placeholder="$250,000" value={data.investments} onChange={(e) => updateFormData({ investments: e.target.value })} className={cn(errors.investments && "border-red-600")} />
+            <Label htmlFor="investments" className="block mb-1.5">Investment accounts</Label>
+            <Input id="investments" value={data.investments} onChange={(e) => updateFormData({ investments: e.target.value })} className={cn(errors.investments && "border-red-600")} />
             <FormError message={errors.investments} />
              <p className="text-sm text-gray-500 mt-1">
               Examples of investment accounts include index funds, mutual funds, 401(k), and IRA.
@@ -40,9 +40,13 @@ export default function Step11({ data, errors, updateFormData, onNext, onBack }:
         </div>
       </div>
       
-      <div className="flex justify-between">
-        <Button variant="outline" onClick={onBack}>Back</Button>
-        <Button onClick={onNext}>Next</Button>
+      <div className="flex w-full items-center gap-4 mt-8">
+        <Button variant="outline" onClick={onBack} size="lg">
+          Back
+        </Button>
+        <Button onClick={onNext} size="lg" className="flex-grow">
+          Next
+        </Button>
       </div>
     </div>
   );

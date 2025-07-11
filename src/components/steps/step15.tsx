@@ -42,7 +42,7 @@ export default function Step15({ onBack, onSubmit }: Step15Props) {
         <Button 
           onClick={onSubmit} 
           disabled={!agreed}
-          className="w-full max-w-sm"
+          className="w-full"
           size="lg"
         >
           Agree and check your rate
@@ -52,8 +52,8 @@ export default function Step15({ onBack, onSubmit }: Step15Props) {
         </p>
       </div>
 
-      <div className="flex justify-start">
-        <Button variant="outline" onClick={onBack}>
+      <div className="flex justify-start mt-8">
+        <Button variant="outline" onClick={onBack} size="lg">
           Back
         </Button>
       </div>

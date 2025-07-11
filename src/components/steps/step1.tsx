@@ -16,8 +16,8 @@ export default function Step1({ data, errors, updateFormData, onNext }: Step1Pro
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">
         <h1 className="text-3xl font-bold">How much would you like to borrow?</h1>
-        <div className="w-full max-w-sm">
-          <Label htmlFor="loan-amount">Loan amount</Label>
+        <div className="w-full">
+          <Label htmlFor="loan-amount" className="block mb-1.5">Loan amount</Label>
           <NumericFormat
             id="loan-amount"
             value={data.loanAmount}
@@ -32,21 +32,21 @@ export default function Step1({ data, errors, updateFormData, onNext }: Step1Pro
             )}
           />
 
-          {/* --- This is the corrected section --- */}
-          {errors.loanAmount ? (
-            <FormError message={errors.loanAmount} />
-          ) : (
-            <p className="text-sm text-gray-500 mt-1">
-              Enter an amount between $1,000 and $75,000
-            </p>
-          )}
-          {/* ------------------------------------ */}
+  {/* --- This is the corrected section --- */}
+  {errors.loanAmount ? (
+    <FormError message={errors.loanAmount} />
+  ) : (
+    <p className="text-sm text-gray-500 mt-1">
+      Enter an amount between $1,000 and $75,000
+    </p>
+  )}
+  {/* ------------------------------------ */}
 
-        </div>
+</div>
       </div>
       
-      <div className="flex justify-end">
-        <Button onClick={onNext}>
+      <div className="flex justify-end mt-8">
+        <Button onClick={onNext} size="lg" className="w-full">
           Next
         </Button>
       </div>

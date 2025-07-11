@@ -65,34 +65,34 @@ export default function Step10({ data, errors, updateFormData, onNext, onBack }:
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">
         <h1 className="text-3xl font-bold">What's your primary source of income?</h1>
-        <div className="w-full max-w-sm">
-          <Label>Income type</Label>
-          <Select
-            value={data.incomeType}
-            onValueChange={(value) => updateFormData({ incomeType: value })}
-          >
-            <SelectTrigger className={cn(errors.incomeType && "border-red-600")}>
-              <SelectValue placeholder="Select..." />
-            </SelectTrigger>
-            <SelectContent>
-              {incomeTypes.map((type) => (
-                <SelectItem key={type} value={type}>
-                  {type}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <FormError message={errors.incomeType} />
-        </div>
+        <div className="w-full">
+  <Label className="block mb-1.5">Income type</Label>
+  <Select
+    value={data.incomeType}
+    onValueChange={(value) => updateFormData({ incomeType: value })}
+  >
+    <SelectTrigger className={cn("w-full", errors.incomeType && "border-red-600")}>
+      <SelectValue placeholder="Select..." />
+    </SelectTrigger>
+    <SelectContent>
+      {incomeTypes.map((type) => (
+        <SelectItem key={type} value={type}>
+          {type}
+        </SelectItem>
+      ))}
+    </SelectContent>
+  </Select>
+  <FormError message={errors.incomeType} />
+</div>
       </div>
       
       {renderIncomeForm()}
 
-      <div className="flex justify-between mt-4">
-        <Button variant="outline" onClick={onBack}>
+     <div className="flex w-full items-center gap-4 mt-8">
+        <Button variant="outline" onClick={onBack} size="lg">
           Back
         </Button>
-        <Button onClick={onNext}>
+        <Button onClick={onNext} size="lg" className="flex-grow">
           Next
         </Button>
       </div>

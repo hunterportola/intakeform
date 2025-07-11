@@ -55,57 +55,57 @@ export default function Step4({ data, errors, updateFormData, onNext, onBack }: 
       <div className="flex flex-col gap-4">
         <h1 className="text-3xl font-bold">When is your birthday?</h1>
         <div className="flex gap-4 items-start">
-          {/* Month Field */}
-          <div className="w-1/2">
-            <Label>Month</Label>
-            <Select value={data.birthMonth} onValueChange={(value) => updateFormData({ birthMonth: value })}>
-              <SelectTrigger className={cn(errors.birthMonth && "border-red-600")}>
-                <SelectValue placeholder="Month" />
-              </SelectTrigger>
-              <SelectContent>
-                {monthOptions.map(m => <SelectItem key={m} value={m}>{m}</SelectItem>)}
-              </SelectContent>
-            </Select>
-            <FormError message={errors.birthMonth} />
-          </div>
+  {/* Month Field */}
+  <div className="w-1/2">
+    <Label className="block mb-1.5">Month</Label>
+    <Select value={data.birthMonth} onValueChange={(value) => updateFormData({ birthMonth: value })}>
+      <SelectTrigger className={cn("w-full", errors.birthMonth && "border-red-600")}>
+        <SelectValue placeholder="Month" />
+      </SelectTrigger>
+      <SelectContent>
+        {monthOptions.map(m => <SelectItem key={m} value={m}>{m}</SelectItem>)}
+      </SelectContent>
+    </Select>
+    <FormError message={errors.birthMonth} />
+  </div>
 
-          {/* Day Field */}
-          <div className="w-1/4">
-            <Label htmlFor="day">Day</Label>
-            <Input 
-              id="day" 
-              ref={dayRef}
-              placeholder="DD" 
-              maxLength={2}
-              value={data.birthDay} 
-              onChange={handleDayChange}
-              className={cn(errors.birthDay && "border-red-600")}
-            />
-            <FormError message={errors.birthDay} />
-          </div>
+  {/* Day Field */}
+  <div className="w-1/4">
+    <Label htmlFor="day" className="block mb-1.5">Day</Label>
+    <Input 
+      id="day" 
+      ref={dayRef}
+      placeholder="DD" 
+      maxLength={2}
+      value={data.birthDay} 
+      onChange={handleDayChange}
+      className={cn(errors.birthDay && "border-red-600")}
+    />
+    <FormError message={errors.birthDay} />
+  </div>
 
-          {/* Year Field */}
-          <div className="w-1/4">
-            <Label htmlFor="year">Year</Label>
-            <Input 
-              id="year" 
-              ref={yearRef}
-              placeholder="YYYY" 
-              maxLength={4}
-              value={data.birthYear} 
-              onChange={(e) => updateFormData({ birthYear: e.target.value })}
-              className={cn(errors.birthYear && "border-red-600")}
-            />
-            <FormError message={errors.birthYear} />
-          </div>
-        </div>
+  {/* Year Field */}
+  <div className="w-1/4">
+    <Label htmlFor="year" className="block mb-1.5">Year</Label>
+    <Input 
+      id="year" 
+      ref={yearRef}
+      placeholder="YYYY" 
+      maxLength={4}
+      value={data.birthYear} 
+      onChange={(e) => updateFormData({ birthYear: e.target.value })}
+      className={cn(errors.birthYear && "border-red-600")}
+    />
+    <FormError message={errors.birthYear} />
+  </div>
+</div>
       </div>
 
-      <div className="flex justify-between">
-        <Button variant="outline" onClick={onBack}>
+      <div className="flex w-full items-center gap-4 mt-8">
+        <Button variant="outline" onClick={onBack} size="lg">
           Back
         </Button>
-        <Button onClick={onNext}>
+        <Button onClick={onNext} size="lg" className="flex-grow">
           Next
         </Button>
       </div>

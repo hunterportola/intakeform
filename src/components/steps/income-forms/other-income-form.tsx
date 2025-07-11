@@ -35,9 +35,9 @@ export default function OtherIncomeForm({ data, errors, updateFormData }: OtherI
         Alimony, child support, or separate maintenance income need not be disclosed if you do not wish to have it considered as a basis for repaying this obligation.
       </p>
       <div>
-        <Label htmlFor="otherIncomeType">Type</Label>
+        <Label htmlFor="otherIncomeType" className="block mb-1.5">Type</Label>
         <Select value={data.otherIncomeType} onValueChange={(value) => updateFormData({ otherIncomeType: value })}>
-          <SelectTrigger id="otherIncomeType" className={cn(errors.otherIncomeType && "border-red-600")}>
+          <SelectTrigger id="otherIncomeType" className={cn("w-full", errors.otherIncomeType && "border-red-600")}>
             <SelectValue placeholder="Select..." />
           </SelectTrigger>
           <SelectContent>{otherIncomeTypes.map(t => <SelectItem key={t} value={t}>{t}</SelectItem>)}</SelectContent>
@@ -45,7 +45,7 @@ export default function OtherIncomeForm({ data, errors, updateFormData }: OtherI
         <FormError message={errors.otherIncomeType} />
       </div>
       <div>
-        <Label htmlFor="otherIncomeAmount">Yearly Amount</Label>
+        <Label htmlFor="otherIncomeAmount" className="block mb-1.5">Yearly Amount</Label>
         <NumericFormat
           id="otherIncomeAmount"
           value={data.otherIncomeAmount}
